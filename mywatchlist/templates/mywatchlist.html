@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Task 3 Assignment PBP/PBD</h1>
+<h5>Nama Pengguna: </h5>
+<p><span style="color:blue">{{nama}}</span></p>
+
+<table>
+    <tr>
+        <th>Watched</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Release Date</th>
+        <th>Review</th>
+    </tr>
+</table>
+<table>
+    {% for watch in watchlist %}
+    <tr>
+        <th>{{watch.watched}}</th>
+        <th>{{watch.title}}</th>
+        <th>{{watch.rating}}</th>
+        <th>{{watch.release_date}}</th>
+        <th>{{watch.review}}</th>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

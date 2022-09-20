@@ -1,0 +1,113 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": "True",
+            "title": "My Neighbor Mbah Toro",
+            "rating": "5",
+            "release_date": "2000-05-20",
+            "review": "Dikira plagiat Totoro, tapi kok horor."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": "True",
+            "title": "Sun Dong Yang",
+            "rating": "3",
+            "release_date": "1999-12-10",
+            "review": "Film Korea ala-ala."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": "False",
+            "title": "Down",
+            "rating": "4",
+            "release_date": "2009-06-01",
+            "review": "Mirip film Disney yang UP itu tapi bikin breakdown."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": "True",
+            "title": "Di balik Drama Twitter",
+            "rating": "5",
+            "release_date": "2020-09-22",
+            "review": "Seorang netizen dituduh melakukan hal kurang baik di Twitter, lalu muncul akun aneh mirip dirinya."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": "False",
+            "title": "Overtale",
+            "rating": "5",
+            "release_date": "2018-02-19",
+            "review": "Frisk bertemu sebuah komputer dan memainkan Overwatch. Tetapi ternyata itu mengubah dunianya."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": "True",
+            "title": "Rekaman CCTV",
+            "rating": "2",
+            "release_date": "2010-03-05",
+            "review": "Rekaman CCTV di sebuah mal di Bekasi."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": "True",
+            "title": "Coboy Junior",
+            "rating": "5",
+            "release_date": "2015-10-21",
+            "review": "Tak perlu tunggu hebat untuk berani memulai apa yang kau inginkan, hanya perlu memulai untuk menjadi hebat raih yang kau impikan."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": "False",
+            "title": "Arsip Biru di Tenda Biru",
+            "rating": "3",
+            "release_date": "2021-08-17",
+            "review": "Seorang wibu akhirnya menikah, tetapi pikirannya masih terbayang karakter di sebuah game online."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": "False",
+            "title": "Baby Shark Toys in Japan version",
+            "rating": "1",
+            "release_date": "2017-07-14",
+            "review": "Baby video follow for more"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": "True",
+            "title": "Suster Keramas 2 - Blue Sky",
+            "rating": "4",
+            "release_date": "2011-04-21",
+            "review": "Kehidupan Langit Biru di Suster Keramas 2"
+        }
+    }
+
+]
