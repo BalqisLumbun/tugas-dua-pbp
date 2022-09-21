@@ -2,6 +2,8 @@
 <h1>Task 3 Assignment PBP/PBD</h1>
 <h5>Nama Pengguna: </h5>
 <p><span style="color:blue">{{nama}}</span></p>
+<p><span style="color:blue">{{npm}}</span></p>
+
 
 <table>
     <tr>
@@ -11,8 +13,6 @@
         <th>Release Date</th>
         <th>Review</th>
     </tr>
-</table>
-<table>
     {% for watch in watchlist %}
     <tr>
         <th>{{watch.watched}}</th>
