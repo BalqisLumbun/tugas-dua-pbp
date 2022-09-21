@@ -5,13 +5,20 @@
 
  
  Jelaskan perbedaan antara JSON, XML, dan HTML! (+ Postman)
+ 
  ![html]((https://github.com/BalqisLumbun/tugas-dua-pbp/blob/main/mywatchlist/pics/html.jpg)
+ ![html](https://user-images.githubusercontent.com/93909538/191421394-1545dbd4-426b-4890-b1da-81f54e3677d8.jpg)
+
  HTML adalah bahasa (lebih tepatnya aturan) pemformatan web, jadi digunakan untuk 
  dasar tampilan web dan bukan sebagai tempat simpanan data.
  ![xml]((https://github.com/BalqisLumbun/tugas-dua-pbp/blob/main/mywatchlist/pics/xml.jpg)
+ ![xml](https://user-images.githubusercontent.com/93909538/191421440-975b07ed-3b30-42c4-8a62-2bf643e38f23.jpg)
+
  XML fungsinya untuk menyimpan dan mengirimkan data, dan sifatnya dinamis, tidak seperti HTML. Secara tampilan
  terlihat seperti tag HTML, tetapi tidak menampilkan data selain object-object.
  ![json]((https://github.com/BalqisLumbun/tugas-dua-pbp/blob/main/mywatchlist/pics/json.jpg)
+ ![json](https://user-images.githubusercontent.com/93909538/191421466-2128435a-3a23-4362-b715-e4ca1e237f22.jpg)
+
  Seperti XML, JSON sifatnya juga menyimpan data. JSON adalah notasi Javascript dalam menyimpan object,
  sehigga kata-kata tampilan (heading) yang seperti di HTML tidak ada, tetapi hanya data-data seperti XML.
  Notasinya berbeda dengan XML, JSON cenderung menyimpan object di array.
