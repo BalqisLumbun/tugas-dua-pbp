@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/
  
 https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/html/
@@ -5,6 +6,12 @@ https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/html/
 https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/xml/
 
 https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/json
+=======
+ https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/
+ https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/html/
+ https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/xml/
+ https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/json
+>>>>>>> 9379a5be327877edfb06cbfdad759975b3c9a9fb
 
  
  Jelaskan perbedaan antara JSON, XML, dan HTML! (+ Postman)
@@ -45,4 +52,8 @@ https://tugas-tiga-pbp-balqis.herokuapp.com/mywatchlist/json
     path('xml/', show_xml, name='show_xml'),path('json/', show_json, name='show_json')
  - Lalu deploy ke heroku, menggunakan procfile yang seperti template.
  - Unit test dilakukan dengan membuat object serupa lalu dicek kesamaannya.
+<<<<<<< HEAD
  - Setelah jadi webnya, cek di postman.
+=======
+ - Setelah jadi webnya, cek di postman.
+>>>>>>> 9379a5be327877edfb06cbfdad759975b3c9a9fb
