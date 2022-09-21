@@ -1,9 +1,8 @@
-[
-    {
+[{
         "model": "mywatchlist.mywatchlist",
         "pk": 1,
         "fields": {
-            "watched": "True",
+            "watched": true,
             "title": "My Neighbor Mbah Toro",
             "rating": "5",
             "release_date": "2000-05-20",
@@ -14,7 +13,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 2,
         "fields": {
-            "watched": "True",
+            "watched": true,
             "title": "Sun Dong Yang",
             "rating": "3",
             "release_date": "1999-12-10",
@@ -25,7 +24,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 3,
         "fields": {
-            "watched": "False",
+            "watched": false,
             "title": "Down",
             "rating": "4",
             "release_date": "2009-06-01",
@@ -36,7 +35,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 4,
         "fields": {
-            "watched": "True",
+            "watched": true,
             "title": "Di balik Drama Twitter",
             "rating": "5",
             "release_date": "2020-09-22",
@@ -47,7 +46,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 5,
         "fields": {
-            "watched": "False",
+            "watched": false,
             "title": "Overtale",
             "rating": "5",
             "release_date": "2018-02-19",
@@ -58,7 +57,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 6,
         "fields": {
-            "watched": "True",
+            "watched": true,
             "title": "Rekaman CCTV",
             "rating": "2",
             "release_date": "2010-03-05",
@@ -69,7 +68,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 7,
         "fields": {
-            "watched": "True",
+            "watched": true,
             "title": "Coboy Junior",
             "rating": "5",
             "release_date": "2015-10-21",
@@ -80,7 +79,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 8,
         "fields": {
-            "watched": "False",
+            "watched": false,
             "title": "Arsip Biru di Tenda Biru",
             "rating": "3",
             "release_date": "2021-08-17",
@@ -91,7 +90,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 9,
         "fields": {
-            "watched": "False",
+            "watched": false,
             "title": "Baby Shark Toys in Japan version",
             "rating": "1",
             "release_date": "2017-07-14",
@@ -102,7 +101,7 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 10,
         "fields": {
-            "watched": "True",
+            "watched": true,
             "title": "Suster Keramas 2 - Blue Sky",
             "rating": "4",
             "release_date": "2011-04-21",

@@ -9,7 +9,8 @@ def show_watchlist(request):
     data = MyWatchList.objects.all()
     context = {
     'watchlist': data,
-    'nama': 'Balqis Lumbun -OKA/2106751184'
+    'nama': 'Balqis Lumbun -OKA/2106751184',
+    'npm' : '2106751184'
     }
     return render(request, "mywatchlist.html",context)
 #def count_watch(request):
