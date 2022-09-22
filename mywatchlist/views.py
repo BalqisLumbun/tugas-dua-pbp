@@ -1,3 +1,5 @@
+from dataclasses import field
+import re
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
@@ -7,15 +9,23 @@ from mywatchlist.models import MyWatchList
 
 def show_watchlist(request):
     data = MyWatchList.objects.all()
+    stats = count_watch(request)
     context = {
     'watchlist': data,
     'nama': 'Balqis Lumbun -OKA',
-    'npm' : '2106751184'
+    'npm' : '2106751184',
+    'status' : stats,
     }
     return render(request, "mywatchlist.html",context)
-#def count_watch(request):
-    #data = MyWatchList.objects.annotate(watched="True")
-    #if data 
+def count_watch(request):
+    data = MyWatchList.objects.count()
+    datatrue = MyWatchList.objects.filter(watched="True").count()
+    selisih = data - datatrue
+    if (datatrue >= selisih):
+        return "Selamat, kamu sudah banyak menonton!"
+    else:
+        return "Wah, kamu masih sedikit menonton!"
+        
 def show_xml(request):
     data = MyWatchList.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
