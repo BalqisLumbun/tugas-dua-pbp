@@ -1,4 +1,4 @@
-Link Heroku: https://katalog-pbp-dua.herokuapp.com/ tapi masih eror kak
+Link Heroku: https://tugas-tiga-pbp-balqis.herokuapp.com/katalog/
 
 -Karena berupa file tertulis maka saya akan berikan penjelasan bukan bagan:
 Request dari klien muncul ke internet, lalu diterima django sebagai webserver environment.
