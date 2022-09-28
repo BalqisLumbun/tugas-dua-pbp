@@ -2,9 +2,11 @@
 <h1>Task 4 Assignment PBP/PBD</h1>
 <br>
 <center>
-    <h4>Nama Pengguna: <span style="color:blue">{{nama}}</span></h4>
+    <h4>Developer Name: <span style="color:blue">{{nama}}</span></h4>
 
     <h4>NPM: <span style="color:blue">{{npm}}</span></h4>
+
+    <h4>Current User: <span style="color:blue">{{uname}}</span></h4>
 
     <h5>Sesi terakhir login: {{ last_login }}</h5>
     <button><a href="{% url 'todolist:logout' %}">Aku Mau Logout</a></button>

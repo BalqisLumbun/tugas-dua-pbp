@@ -19,10 +19,16 @@ def show_todolist(request):
         'mytodolist': data,
         'nama': 'Balqis Lumbun/Oka',
         'npm': "2106751184",
+        'uname':username_in(request),
         'last_login': request.COOKIES['last_login'],
         
     }
     return render(request, "todolist.html", context)
+def username_in(request):
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.username
+        return username
 
 def register(request):
     form = UserCreationForm()
