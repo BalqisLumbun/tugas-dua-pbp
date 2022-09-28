@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Make Your Own To Do List</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td>Task Title</td>
+            <td><input type="text" name="title" /></td>
+        </tr>
+        <tr>
+            <td>Describe your task!</td>
+            <td><input type="text" name="description" /></td>
+        </tr>
+    </table>
+    <input type="submit" name="submit" value="Post">
+</form>
+{% endblock content %}
