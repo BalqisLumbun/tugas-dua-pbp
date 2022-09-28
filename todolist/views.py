@@ -67,3 +67,11 @@ def new_list(request):
         addtask.save()
         return redirect('todolist:show_todolist')
     return render(request, "newtodo.html")
+
+def finish_task(request, id):
+    if request.method == 'POST':
+        id = request.POST.get('number')
+        toDoList.objects.get(pk=id).finished = True
+        toDoList.objects.get(pk=id).save()
+        return redirect('todolist:show_todolist')
+    return render(request, "todolist.html")
