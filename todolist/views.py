@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import todoForm
+from todolist.forms import todoForm
 import datetime
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -74,10 +74,17 @@ def new_list(request):
         return redirect('todolist:show_todolist')
     return render(request, "newtodo.html")
 
-def finish_task(request, id):
-    if request.method == 'POST':
-        id = request.POST.get('number')
-        toDoList.objects.get(pk=id).finished = True
-        toDoList.objects.get(pk=id).save()
-        return redirect('todolist:show_todolist')
-    return render(request, "todolist.html")
+def finish_task(request, pk):
+    lists=toDoList.objects.get(id=pk)
+    if lists.finished == True:
+        lists.finished = False
+    else:
+        lists.finished = True
+    lists.save()
+    return redirect('todolist:show_todolist')
+
+
+def delete_task(request, pk):
+    lists=toDoList.objects.get(id=pk)
+    lists.delete()
+    return redirect('todolist:show_todolist')

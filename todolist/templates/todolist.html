@@ -21,16 +21,21 @@
             <th>Task Date</th>
             <th>Task Name</th>
             <th>Description</th>
-            <th>Status</th>
+            <th>Are you Done?</th>
             <th>Task of User</th>
+            <th>Finish</th>
+            <th>Delete</th>
         </tr>
         {% for task in mytodolist %}
         <tr>
             <th>{{task.date}}</th>
             <th>{{task.title}}</th>
             <th>{{task.description}}</th>
-            <th>{{task.finished}}</th>
+            <th>{% if task.finished == True %} Done {% else %} Not Yet {% endif %}
+            </th>
             <th>{{task.user}}</th>
+            <td><button><a href="{% url 'todolist:finish' task.pk %}">Mark Done</a></button></td>
+            <td><button><a href="{% url 'todolist:delete' task.pk %}">Delete</a></button></td>
         </tr>
         {% endfor %}
     </table>
