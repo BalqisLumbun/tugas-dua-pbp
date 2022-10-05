@@ -1,39 +1,65 @@
-{% extends 'base.html' %} {% block meta %}
-<title>Login</title>
+{% extends 'base.html' %} {% block meta %} {% load static %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #3BE3D5;
+        }
+    </style>
+    <title>Logging In..</title>
+</head>
 {% endblock meta %} {% block content %}
 
-<div class="login">
 
-    <h1>Login</h1>
+<body>
+    <center>
+        <link rel="stylesheet" href="{% static 'css/tutorial.css' %}" media="biasa" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+        <div id="nav">
+            <h5>Balqis A. Lumbun - 2106751184</h5>
+            <h5><a style="color:brown" href="{% url 'todolist:register' %}">Bikin Akun</a></h5>
+        </div>
+        <div class="login">
+            <div id="bigspace">
+                <h1>Login Dulu Yuk!</h1>
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>
+                            <h5>Username: </h5>
+                        </td>
+                        <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>
+                            <h5>Password: </h5>
+                        </td>
+                        <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button style="float: right;"><input class="btn login_btn"  style="color: white;" type="submit" value="Login"></button></td>
+                    </tr>
+                </table>
+            </form>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <br>
+            <h5>Kamu belum ada akun ya?</h5><br><button><a href="{% url 'todolist:register' %}">Buat Akun</a></button>
 
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %} Kamu belum ada akun ya? <a href="{% url 'todolist:register' %}">Buat Akun</a>
-
-</div>
+        </div>
+    </center>
+</body>
 
 {% endblock content %}

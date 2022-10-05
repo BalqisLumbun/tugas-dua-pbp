@@ -22,3 +22,17 @@ D.Implementasi:
 5. Memboat todolist.html beserta username, tombol task baru yang meredirect ke form, logout, tabel task
 6. Membuat routing di folder todolist, urls.py
 7. Deploy
+
+Week 5
+Inline style adalah CSS yang diletakkan di line, tepatnya di tag HTML.
+Contohnya <p style ="color:blue">
+
+Internal style sheets adalah CSS yang diletakkan di dalam kurungan <head> dan </head>, dimulai dengan <style>, dan diakhiri dengan </style>
+
+External style sheets adalah CSS yang diimpor dari luar dan butuh link untuk implementasinya.
+
+Tag di HTML5 yang baru, saya pakai <nav>, lalu ada juga <header>, <footer>, <audio>, <video>. Yang di HTML biasa ada <p>,<b>,<h1>-<h5>, dll.
+
+Tipe-tipe selector CSS adalah element selector (tag html), id selector (#), dan class selector(.).
+
+Implementasi checklist dilakukan dengan cara memberi {% load static %} di atas file lalu mengimpor css yang ada di static dan Bootstrap. Lalu saya ubah-ubah desainnya, seperti membuat card, memakai class selector, sebagian besar saya menggunakan CSS biasa.

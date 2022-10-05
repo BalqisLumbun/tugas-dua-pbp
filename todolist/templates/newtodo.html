@@ -1,18 +1,48 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Make Your Own To Do List</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td>Task Title</td>
-            <td><input type="text" name="title" /></td>
-        </tr>
-        <tr>
-            <td>Describe your task!</td>
-            <td><input type="text" name="description" /></td>
-        </tr>
-    </table>
-    <input type="submit" name="submit" value="Post">
-</form>
+{% extends 'base.html' %} {% load static %}{% block content %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #3BE3D5;
+        }
+    </style>
+    <title>Create Task!</title>
+</head>
+
+<body>
+    <div id="bigspace">
+        <h3>Create New Task</h3>
+        <button type="button" class="btn btn-primary btn-sm" style="float: right;"><a style="font-family:Century Gothic;" href="{% url 'todolist:logout' %}">Logout</a></button>
+    </div>
+    <center>
+        <link rel="stylesheet" href="{% static 'css/tutorial.css' %}" media="biasa" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+        <div id="box">
+            <h1>Make Your Own To Do List</h1>
+        </div>
+
+        <div id="blank"></div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td>
+                        <h5>Task Title</h5>
+                    </td>
+                    <td><input class="rounded" type="text" name="title" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>Describe Your Task! </h5>
+                    </td>
+                    <td><input class="rounded" type="text" name="description" /></td>
+                </tr>
+            </table>
+            <center><input class="btn btn-primary btn-sm" type="submit" name="submit" value="Post"></center>
+        </form>
+    </center>
+</body>
 {% endblock content %}

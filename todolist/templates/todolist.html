@@ -1,44 +1,67 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Task 4 Assignment PBP/PBD</h1>
-<br>
-<center>
-    <h4>Developer Name: <span style="color:blue">{{nama}}</span></h4>
+{% extends 'base.html' %}{% load static %}{% block content %}
 
-    <h4>NPM: <span style="color:blue">{{npm}}</span></h4>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #3BE3D5;
+        }
+    </style>
+</head>
 
-    <h4>Current User: <span style="color:blue">{{uname}}</span></h4>
+<body>
+    <link rel="stylesheet" href="{% static 'css/tutorial.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <center>
+        <div id="nav">
+            <h5>{{nama}} - {{npm}} - {{uname}}</h5>
+            <h5><a style="color:brown" href="{% url 'todolist:logout' %}">Logout</a></h5>
+        </div>
+        <div id="bigspace">
+            <h1>Task 4 Assignment PBP/PBD</h1>
+            <br>
+            <h4>Developer Name: <span style="color:rgb(18, 190, 35)">{{nama}}</span></h4>
 
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-    <button><a href="{% url 'todolist:logout' %}">Aku Mau Logout</a></button>
-    <button><a href="{% url 'todolist:new_list' %}">Tambah Task Baru</a></button>
-</center>
+            <h4>NPM: <span span style="color:rgb(18, 190, 35)">{{npm}}</span></h4>
 
-<center>
-    <br>
-    <br>
-    <table border="2">
-        <tr>
-            <th>Task Date</th>
-            <th>Task Name</th>
-            <th>Description</th>
-            <th>Are you Done?</th>
-            <th>Task of User</th>
-            <th>Finish</th>
-            <th>Delete</th>
-        </tr>
-        {% for task in mytodolist %}
-        <tr>
-            <th>{{task.date}}</th>
-            <th>{{task.title}}</th>
-            <th>{{task.description}}</th>
-            <th>{% if task.finished == True %} Done {% else %} Not Yet {% endif %}
-            </th>
-            <th>{{task.user}}</th>
-            <td><button><a href="{% url 'todolist:finish' task.pk %}">Mark Done</a></button></td>
-            <td><button><a href="{% url 'todolist:delete' task.pk %}">Delete</a></button></td>
-        </tr>
-        {% endfor %}
-    </table>
+            <h4>Current User: <span span style="color:rgb(18, 190, 35)">{{uname}}</span></h4>
 
-</center>
+            <h5>Sesi terakhir login: {{ last_login }}</h5>
+            <br>
+            <button><a href="{% url 'todolist:logout' %}">Aku Mau Logout</a></button>
+            <button><a href="{% url 'todolist:new_list' %}">Tambah Task Baru</a></button>
+        </div>
+    </center>
+
+    <center>
+        <br>
+        <div class="beeg">
+            <br> {% for task in mytodolist %}
+            <div class="card">
+                <h4>Task Date</h4>
+                <h5>{{task.date}}</h5>
+                <h4>Task Name</h4>
+                <h5>{{task.title}}</h5>
+                <h4>Description</h4>
+                <h5>{{task.description}}</h5>
+                <h4>Are you Done?</h4>
+                <h5>{% if task.finished == True %} Done {% else %} Not Yet {% endif %}
+                </h5>
+                <h4>Task of User</h4>
+                <h5>{{task.user}}</h5>
+                <center>
+                    <button class="done"><a href="{% url 'todolist:finish' task.pk %}">Mark Done</a></button>
+                    <div id="blank">
+                        <p> </p>
+                    </div>
+                    <button class="delet"><a href="{% url 'todolist:delete' task.pk %}">Delete</a></button>
+                </center>
+                <br>
+            </div>
+            <br> {% endfor %}
+        </div>
+
+    </center>
+</body>
 {% endblock content %}
