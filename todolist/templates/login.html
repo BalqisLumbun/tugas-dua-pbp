@@ -1,8 +1,10 @@
-{% extends 'base.html' %} {% block meta %} {% load static %}
+{% extends 'base.html' %} {% block content %}{% block meta %} {% load static %}
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="tuts.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <style>
         body {
             background-color: #3BE3D5;
@@ -10,21 +12,19 @@
     </style>
     <title>Logging In..</title>
 </head>
-{% endblock meta %} {% block content %}
+{% endblock meta %}
 
 
 <body>
     <center>
-        <link rel="stylesheet" href="{% static 'css/tutorial.css' %}" media="biasa" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
         <div id="nav">
             <h5>Balqis A. Lumbun - 2106751184</h5>
             <h5><a style="color:brown" href="{% url 'todolist:register' %}">Bikin Akun</a></h5>
         </div>
+        <div id="bigspace">
+            <h1>Login Dulu Yuk!</h1>
+        </div>
         <div class="login">
-            <div id="bigspace">
-                <h1>Login Dulu Yuk!</h1>
-            </div>
             <form method="POST" action="">
                 {% csrf_token %}
                 <table>
@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button style="float: right;"><input class="btn login_btn"  style="color: white;" type="submit" value="Login"></button></td>
+                        <td><button style="float: right;background-color:#3042c9;"><input class="btn login_btn"  style="color: white;" type="submit" value="Login"></button></td>
                     </tr>
                 </table>
             </form>
@@ -56,7 +56,7 @@
             </ul>
             {% endif %}
             <br>
-            <h5>Kamu belum ada akun ya?</h5><br><button><a href="{% url 'todolist:register' %}">Buat Akun</a></button>
+            <h5>Kamu belum ada akun ya?</h5><br><button style="background-color:#3042c9;"><a style="color: beige;" href="{% url 'todolist:register' %}">Buat Akun</a></button>
 
         </div>
     </center>
