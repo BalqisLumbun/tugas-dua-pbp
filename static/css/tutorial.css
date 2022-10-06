@@ -106,26 +106,28 @@ button:hover{
 .card{
     background-color:#f9fce6;
     display: flex;
-    min-width:150px;
+    min-width:250px;
     max-width:800px;
 }
-@media (max-width:1500px){
-    /* .beeg{
+@media (500px< width){
+    .beeg{
 
-        display:flex;
-    } */
+        display: flex;
+    }
     .card{
-        
-        display:flex;
+        width:500px;
+        display: inline-block;
     }
     
 }
-@media (min-width:200px){
+@media (200px<= width <=500px){
     /* .beeg{
         display:flex;
     } */
     .card{
-        display:flex;
+        min-width:250px;
+        display: inline-block;
+        
     }
     
 }
