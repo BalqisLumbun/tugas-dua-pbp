@@ -31,7 +31,7 @@ Internal style sheets adalah CSS yang diletakkan di dalam kurungan <head> dan </
 
 External style sheets adalah CSS yang diimpor dari luar dan butuh link untuk implementasinya.
 
-Tag di HTML5 yang baru, saya pakai <nav>, lalu ada juga <header>, <footer>, <audio>, <video>. Yang di HTML biasa ada <p>,<b>,<h1>-<h5>, dll.
+Tag di HTML5 yang baru, saya pakai nav, lalu ada juga header, footer, audio, video. Yang di HTML biasa ada p,b,h1,h2,h3,h4,h5, dll.
 
 Tipe-tipe selector CSS adalah element selector (tag html), id selector (#), dan class selector(.).
 
