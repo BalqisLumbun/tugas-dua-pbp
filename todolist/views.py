@@ -7,14 +7,16 @@ from django.contrib import messages
 from todolist.forms import todoForm
 import datetime
 from django.http import HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.urls import reverse
+from django.core import serializers
 from todolist.models import toDoList
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    data = toDoList.objects.all()
+    data = toDoList.objects.filter(user=request.user)
     context = {
         'mytodolist': data,
         'nama': 'Balqis Lumbun/Oka',
@@ -24,6 +26,35 @@ def show_todolist(request):
         
     }
     return render(request, "todolist.html", context)
+
+def json(request):
+    data = toDoList.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
+def add(request):
+    if request.method == 'POST':
+        user = request.user
+        date = request.POST.get("date")
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        finished = request.POST.get("finished")
+
+        new_to_do_list = toDoList( date=date, title=title, description=description, user=user, finished=finished)
+        new_to_do_list.save()
+
+        return JsonResponse(
+            {"pk" : new_to_do_list.pk, 
+            "fields": {
+            "date" : new_to_do_list.date,
+            "title" : new_to_do_list.title,
+            "description" : new_to_do_list.description,
+            "is_finished" : new_to_do_list.finished,
+        }})
+
+    return HttpResponseNotFound()
+
 def username_in(request):
     username = None
     if request.user.is_authenticated:
@@ -63,6 +94,8 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+@login_required(login_url='/todolist/login/')
+# @csrf_exempt
 def new_list(request):
     if request.method == 'POST':
         user = request.user
@@ -74,16 +107,19 @@ def new_list(request):
         return redirect('todolist:show_todolist')
     return render(request, "newtodo.html")
 
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
 def finish_task(request, pk):
     lists=toDoList.objects.get(id=pk)
     if lists.finished == True:
-        lists.finished = False
+        lists.finished = False            
     else:
         lists.finished = True
     lists.save()
     return redirect('todolist:show_todolist')
 
-
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
 def delete_task(request, pk):
     lists=toDoList.objects.get(id=pk)
     lists.delete()

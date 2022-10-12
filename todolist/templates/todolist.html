@@ -2,6 +2,81 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.get(window.location.href + "json/", function(data) {
+                for (i = data.length - 1; i >= 0; i--) {
+                    getData(data[i]);
+                    deletes(data[i]);
+                    update(data[i]);
+                }
+            });
+
+            // $("#modalan").click(function() {
+
+            // });
+
+            $("#newlist").submit(function(event) {
+                event.preventDefault();
+                $.post(window.location.href + "add/", {
+                    title: $("#title").val(),
+                    description: $("#description").val(),
+                }).done(function(data) {
+                    getData(data);
+                    update(data);
+                    deletes(data);
+                    $("#title").val(""), $("#description").val("");
+                    const makeCard = document.getElementById("todolist");
+                    makeCard.insertAdjacentHTML("beforestart", $(`#${data.pk}_list`));
+                });
+            });
+
+            function getData(data) {
+                $(".beeg").append(
+                    `
+                    <div class="card" id="${data.pk}_list" >
+                        <h4>Task Date</h4>
+                        <h5>${data.fields.date}</h5>
+                        <h4>Task Name</h4>
+                        <h5>${data.fields.title}</h5>
+                        <h4>Description</h4>
+                        <h5>${data.fields.description}</h5>
+                        <h4>Are you Done?</h4>
+                        <h5 id="${data.pk}-status">${data.fields.finished ? "Done":"Not Yet"}</h5>
+                        <h4>Task of User</h4>
+                        <h5>{{uname}}</h5>
+                        <button class="done"><a id="${data.pk}-finished"> Mark Done </a></button>
+                        <button class="delet"><a id="${data.pk}-delete"> Delete </a></button>
+                    </div>
+                    `
+                );
+            }
+
+            function update(data) {
+                $(`#${data.pk}-finished`).click(function() {
+                    $.post(window.location.href + `finish-task/${data.pk}/`, {}).done(
+                        (res) => {
+                            const status = res.finished ? "Done" : "Not Yet";
+                            $(`#${data.pk}-status`).text(status);
+                        }
+                    );
+                });
+            }
+
+            function deletes(data) {
+                $(`#${data.pk}-delete`).click(function() {
+                    $.post(window.location.href + `delete-task/${data.pk}/`, {}).done(
+                        (res) => {
+                            $(`#${data.pk}-list`).hide();
+                        }
+                    );
+                });
+            }
+        });
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <style>
         h1 {
@@ -121,7 +196,11 @@
             background-color: #f9fce6;
             display: flex;
             min-width: 150px;
-            max-width: 800px;
+        }
+        
+        .card:hover {
+            width: 550px;
+            transition: 200ms linear;
         }
         
         @media (max-width:1500px) {
@@ -164,16 +243,50 @@
     </style>
 </head>
 
+
 <body>
     <link rel="stylesheet" href="{% static 'css/tutorial.css' %}" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <div class="modal fade" id="myModals">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Make New Task</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="newlist">
+                        {% csrf_token %}
+                        <table>
+                            {{ form.as_table }}
+                            <tr>
+                                <td>
+                                    <h5>Task Title</h5>
+                                </td>
+                                <td><input class="rounded" type="text" name="title" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Describe Your Task! </h5>
+                                </td>
+                                <td><input class="rounded" type="text" name="description" /></td>
+                            </tr>
+                        </table>
+                        <center><input class="btn btn-primary btn-sm" type="submit" name="submit" value="Post"></center>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
     <center>
         <div id="nav">
             <h5>{{nama}} - {{npm}} - {{uname}}</h5>
             <h5><a style="color:brown" href="{% url 'todolist:logout' %}">Logout</a></h5>
+            <button type="button" href="" onclick="$('#myModals').modal('show');">Tambah Task Baru</button>
         </div>
         <div id="bigspace">
-            <h1>Task 4-5 Assignment PBP/PBD</h1>
+            <h1>Task 4-5-6 Assignment PBP/PBD</h1>
             <br>
             <h4>Developer Name: <span style="color:rgb(18, 190, 35)">{{nama}}</span></h4>
 
@@ -184,39 +297,12 @@
             <h5>Sesi terakhir login: {{ last_login }}</h5>
             <br>
             <button><a href="{% url 'todolist:logout' %}">Aku Mau Logout</a></button>
-            <button><a href="{% url 'todolist:new_list' %}">Tambah Task Baru</a></button>
+
         </div>
     </center>
-
     <center>
         <br>
-        <div class="beeg">
-            <br> {% for task in mytodolist %}
-            <div class="card">
-                <h4>Task Date</h4>
-                <h5>{{task.date}}</h5>
-                <h4>Task Name</h4>
-                <h5>{{task.title}}</h5>
-                <h4>Description</h4>
-                <h5>{{task.description}}</h5>
-                <h4>Are you Done?</h4>
-                <h5>{% if task.finished == True %} Done {% else %} Not Yet {% endif %}
-                </h5>
-                <h4>Task of User</h4>
-                <h5>{{task.user}}</h5>
-                <center>
-                    <button class="done"><a href="{% url 'todolist:finish' task.pk %}">Mark Done</a></button>
-                    <div id="blank">
-                        <p> </p>
-                    </div>
-                    <button class="delet"><a href="{% url 'todolist:delete' task.pk %}">Delete</a></button>
-                </center>
-                <br>
-            </div>
-            <div id=blank></div>
-            <br> {% endfor %}
-        </div>
-
+        <div class="beeg"></div>
     </center>
 </body>
 {% endblock content %}
