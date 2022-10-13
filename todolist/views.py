@@ -106,12 +106,11 @@ def json(request):
 def add_task(request):
     if request.method == 'POST':
         user = request.user
-        date = request.POST.get("date")
         title = request.POST.get("title")
         description = request.POST.get("description")
-        finished = request.POST.get("finished")
+        finished = False
 
-        new_to_do_list = toDoList( date=date, title=title, description=description, user=user, finished=finished)
+        new_to_do_list = toDoList( date=datetime.date.today(), title=title, description=description, user=user, finished=finished)
         new_to_do_list.save()
 
         return JsonResponse(
