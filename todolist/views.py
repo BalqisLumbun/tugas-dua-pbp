@@ -27,34 +27,6 @@ def show_todolist(request):
     }
     return render(request, "todolist.html", context)
 
-def json(request):
-    data = toDoList.objects.filter(user = request.user)
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
-
-@login_required(login_url='/todolist/login/')
-@csrf_exempt
-def add(request):
-    if request.method == 'POST':
-        user = request.user
-        date = request.POST.get("date")
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        finished = request.POST.get("finished")
-
-        new_to_do_list = toDoList( date=date, title=title, description=description, user=user, finished=finished)
-        new_to_do_list.save()
-
-        return JsonResponse(
-            {"pk" : new_to_do_list.pk, 
-            "fields": {
-            "date" : new_to_do_list.date,
-            "title" : new_to_do_list.title,
-            "description" : new_to_do_list.description,
-            "is_finished" : new_to_do_list.finished,
-        }})
-
-    return HttpResponseNotFound()
-
 def username_in(request):
     username = None
     if request.user.is_authenticated:
@@ -124,3 +96,31 @@ def delete_task(request, pk):
     lists=toDoList.objects.get(id=pk)
     lists.delete()
     return redirect('todolist:show_todolist')
+
+def json(request):
+    data = toDoList.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
+def add_task(request):
+    if request.method == 'POST':
+        user = request.user
+        date = request.POST.get("date")
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        finished = request.POST.get("finished")
+
+        new_to_do_list = toDoList( date=date, title=title, description=description, user=user, finished=finished)
+        new_to_do_list.save()
+
+        return JsonResponse(
+            {"pk" : new_to_do_list.pk, 
+            "fields": {
+            "date" : new_to_do_list.date,
+            "title" : new_to_do_list.title,
+            "description" : new_to_do_list.description,
+            "is_finished" : new_to_do_list.finished,
+        }})
+
+    return HttpResponseNotFound()

@@ -1,82 +1,10 @@
-{% extends 'base.html' %}{% load static %}{% block content %}
+{% extends 'base.html' %}{% load static %}{% block meta %}
 
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $.get(window.location.href + "json/", function(data) {
-                for (i = data.length - 1; i >= 0; i--) {
-                    getData(data[i]);
-                    deletes(data[i]);
-                    update(data[i]);
-                }
-            });
-
-            // $("#modalan").click(function() {
-
-            // });
-
-            $("#newlist").submit(function(event) {
-                event.preventDefault();
-                $.post(window.location.href + "add/", {
-                    title: $("#title").val(),
-                    description: $("#description").val(),
-                }).done(function(data) {
-                    getData(data);
-                    update(data);
-                    deletes(data);
-                    $("#title").val(""), $("#description").val("");
-                    const makeCard = document.getElementById("todolist");
-                    makeCard.insertAdjacentHTML("beforestart", $(`#${data.pk}_list`));
-                });
-            });
-
-            function getData(data) {
-                $(".beeg").append(
-                    `
-                    <div class="card" id="${data.pk}_list" >
-                        <h4>Task Date</h4>
-                        <h5>${data.fields.date}</h5>
-                        <h4>Task Name</h4>
-                        <h5>${data.fields.title}</h5>
-                        <h4>Description</h4>
-                        <h5>${data.fields.description}</h5>
-                        <h4>Are you Done?</h4>
-                        <h5 id="${data.pk}-status">${data.fields.finished ? "Done":"Not Yet"}</h5>
-                        <h4>Task of User</h4>
-                        <h5>{{uname}}</h5>
-                        <button class="done"><a id="${data.pk}-finished"> Mark Done </a></button>
-                        <button class="delet"><a id="${data.pk}-delete"> Delete </a></button>
-                    </div>
-                    `
-                );
-            }
-
-            function update(data) {
-                $(`#${data.pk}-finished`).click(function() {
-                    $.post(window.location.href + `finish-task/${data.pk}/`, {}).done(
-                        (res) => {
-                            const status = res.finished ? "Done" : "Not Yet";
-                            $(`#${data.pk}-status`).text(status);
-                        }
-                    );
-                });
-            }
-
-            function deletes(data) {
-                $(`#${data.pk}-delete`).click(function() {
-                    $.post(window.location.href + `delete-task/${data.pk}/`, {}).done(
-                        (res) => {
-                            $(`#${data.pk}-list`).hide();
-                        }
-                    );
-                });
-            }
-        });
-    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <style>
         h1 {
@@ -241,8 +169,96 @@
             padding: 10px;
         }
     </style>
+    <script>
+        //Kak saya dibantu Risa untuk membuat kode ini
+
+        $(document).ready(function() {
+            $.get(window.location.href + "json/", function(data) {
+                for (i = data.length - 1; i >= 0; i--) {
+                    getData(data[i]);
+                    deletes(data[i]);
+                    update(data[i]);
+                }
+            });
+
+            // $("#posted").click(function() {
+            //     var 
+            // });
+            $("#posted").click(function() {
+                $("#newlist").submit(function(event) {
+                    event.preventDefault();
+                    $.post(window.location.href + "add/", {
+                        title: $("#title").val(),
+                        description: $("#description").val(),
+                    }).done(function(data) {
+                        getData(data);
+                        deletes(data);
+                        update(data);
+                        $("#title").val(""), $("#description").val("");
+                        const makeCard = document.getElementById("beeg");
+                        makeCard.insertAdjacentHTML("beforeend", $(`#${data.pk}_list`));
+                    });
+                });
+            });
+
+            function getData(data) {
+                $("#beeg").append(
+                    `
+                        <div id="${data.pk}_list" class="card" >
+                            <h4>Task Date</h4>
+                            <h5>${data.fields.date}</h5>
+                            <h4>Task Name</h4>
+                            <h5>${data.fields.title}</h5>
+                            <h4>Description</h4>
+                            <h5>${data.fields.description}</h5>
+                            <h4>Are you Done?</h4>
+                            <h5 id="${data.pk}-status">${data.fields.finished ? "Done":"Not Yet"}</h5>
+                            <h4>Task of User</h4>
+                            <h5>{{uname}}</h5>
+                            <button class="done"><a id="${data.pk}-finished"> Mark Done </a></button>
+                            <button class="delet"><a id="${data.pk}-delete"> Delete </a></button>
+                        </div>
+                        `
+                );
+            }
+
+            function update(data) {
+                $(`#${data.pk}-finished`).click(function() {
+                    $.post(window.location.href + `finish-task/${data.pk}/`, {}).done(
+                        (res) => {
+                            const status = "Not Yet";
+
+                            $(`#${data.pk}-status`).text(status);
+                        }
+                    );
+                });
+                $(`#${data.pk}-finished`).dblclick(function() {
+                    $.post(window.location.href + `finish-task/${data.pk}/`, {}).done(
+                        (res) => {
+                            const status = "Done";
+                            $(`#${data.pk}-status`).text(status);
+                        }
+                    );
+                });
+            }
+
+            function deletes(data) {
+                $(`#${data.pk}-delete`).click(function() {
+                    $.post(window.location.href + `delete-task/${data.pk}/`, {}).done(
+                        (res) => {
+                            $(`#${data.pk}-list`).fadeOut();
+                        }
+                    );
+                });
+            }
+        });
+
+        // document.getElementById("clicme").onclick = addList
+        // refreshtoDolist()
+    </script>
 </head>
 
+{% endblock meta %} {% block content %}
 
 <body>
     <link rel="stylesheet" href="{% static 'css/tutorial.css' %}" />
@@ -262,16 +278,16 @@
                                 <td>
                                     <h5>Task Title</h5>
                                 </td>
-                                <td><input class="rounded" type="text" name="title" /></td>
+                                <td><input class="rounded" type="text" name="title" id="title" /></td>
                             </tr>
                             <tr>
                                 <td>
                                     <h5>Describe Your Task! </h5>
                                 </td>
-                                <td><input class="rounded" type="text" name="description" /></td>
+                                <td><input class="rounded" type="text" name="description" id="description" /></td>
                             </tr>
                         </table>
-                        <center><input class="btn btn-primary btn-sm" type="submit" name="submit" value="Post"></center>
+                        <center><input class="btn btn-primary btn-sm" type="submit" name="submit" id="posted" value="Post"></center>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -283,7 +299,7 @@
         <div id="nav">
             <h5>{{nama}} - {{npm}} - {{uname}}</h5>
             <h5><a style="color:brown" href="{% url 'todolist:logout' %}">Logout</a></h5>
-            <button type="button" href="" onclick="$('#myModals').modal('show');">Tambah Task Baru</button>
+            <button id="clicme" type="button" data-toggle="modal" data-target="#myModals" href="" onclick="$('#myModals').modal('show');">Tambah Task Baru</button>
         </div>
         <div id="bigspace">
             <h1>Task 4-5-6 Assignment PBP/PBD</h1>
@@ -302,7 +318,9 @@
     </center>
     <center>
         <br>
-        <div class="beeg"></div>
+        <div id="beeg"></div>
     </center>
+
+
 </body>
 {% endblock content %}
